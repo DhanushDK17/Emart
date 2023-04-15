@@ -57,7 +57,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatFormFieldModule,
     MatTabsModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule,
+    MatFormFieldModule
   ],
   providers: [SignUpDeactivateService,EnterGuardService],
   bootstrap: [AppComponent]
