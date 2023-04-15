@@ -1,0 +1,109 @@
+<style>
+    footer {
+
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: lightslategray;
+        color: black;
+        text-align: center;
+
+    }
+</style>
+<div class="container pt-5">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-sm-6">
+            <div class="card  text-white bg-secondary">
+                <div class="card-header text-center bg-dark"><b>LOGIN</b>
+                </div>
+                <div>
+                    <p class="text-danger">{{errorMessage}}</p>
+                </div>
+                <div class="card-body">
+                    <mat-tab-group>
+                        <mat-tab label="Login">
+                            <form action="">
+                                <div class="Form-group mx-2 my-3">
+                                    <!-- <h6>Sign in as</h6> -->
+                                    <div class="row mx-2 my-3">
+                                        <!-- <div class="col">
+                                            <input type="radio" name="signup" [(ngModel)]="sign" value="buyer">Buyer</div>
+                                        <div class="col">
+                                            <input type="radio" name="signup" [(ngModel)]="sign" value="seller">Seller
+                                        </div> -->
+                                        <div class="col">
+                                            <mat-radio-group [(ngModel)]="sign" [ngModelOptions]="{standalone: true}" aria-label="Select an option" class="row">
+                                                <mat-radio-button style="margin-right: 10px;" value="buyer">Buyer</mat-radio-button>
+                                                <mat-radio-button value="seller">Seller</mat-radio-button>
+                                            </mat-radio-group>  
+                                        </div>
+                                    </div>
+                                    <!-- <label for="username">USER</label> -->
+                                    <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                                        placeholder="username" name="username" />
+                                </div>
+                                <div class="Form-group mx-2 my-3">
+                                    <!-- <label for="pass">PASSWORD</label> -->
+                                    <input type="password" class="form-control" id="pass" [(ngModel)]="password"
+                                        placeholder="password" name="password" />
+                                </div>
+                                <button mat-raised-button color="primary" class="btn float-right" (click)="validate()">Primary</button>
+                                <!-- <button type="submit" class="btn btn-dark float-right" (click)="validate()">LOGIN</button> -->
+                            </form>
+                        </mat-tab>
+                        <mat-tab label="SignUp">
+                            <form style="overflow: hidden; justify-content: left;" #signUpForm="ngForm"action="">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="Form-group mx-2 my-3">
+                                            <!-- <label for="username">USER</label> -->
+                                            <input type="text" class="form-control" id="username" placeholder="username"
+                                                name="username" [(ngModel)]="buyerusername">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="Form-group mx-2 my-3">
+                                            <!-- <label for="password">PASSWORD</label> -->
+                                            <input type="text" class="form-control" id="password" placeholder="password"
+                                                name="password" [(ngModel)]="buyerpassword">
+                                        </div>
+                                    </div>
+                            
+                                </div>
+                                <div class="col">
+                                    <div class="Form-group mx-2 my-3">
+                                        <!-- <label for="email">EMAILID</label> -->
+                                        <input type="text" class="form-control" id="email" placeholder="Email Address"
+                                            name="email" [(ngModel)]="buyeremail">
+                                    </div>
+                                    <div class="row">
+                                        <div class="Form-group mx-2 my-3">
+                                            <!-- <label for="phoneno">NUMBER</label> -->
+                                            <input type="tel" class="form-control" id="mobile" placeholder="Mobile number"
+                                                name="mobile" [(ngModel)]="buyermobile">
+                                        </div>
+                                        <div class="Form-group mx-2 my-3">
+                                            <input type="date" class="form-control" id="date" placeholder="date"
+                                                    name="date" [(ngModel)]="buyerdate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button mat-raised-button color="primary" class="btn float-right" (click)="addBuyer()">Register</button>
+                            </form>
+                        </mat-tab>
+                      </mat-tab-group>              
+                </div>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+<footer class="sticky-footer fixed-bottom">
+    2023 @ DBASKIT
+</footer>
