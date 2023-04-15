@@ -15,6 +15,7 @@ export class ItemListComponent implements OnInit {
   filteredItems: any;
   categoriesWithSubcategories: {[key: string]: string[]} = {}; // initialize as empty object
   categories: any;
+  search : String ="";
   constructor(
     protected emartService: EmartService,
     protected router: Router
