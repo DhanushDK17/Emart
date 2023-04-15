@@ -18,8 +18,10 @@ import { LogoutComponent } from './emart/signup/logout/logout.component';
 import { SignUpDeactivateService } from './sign-up-can-deactivate.service';
 import { ErrorComponent } from './error/error.component';
 import { EnterGuardService } from './enter-guard-service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -43,7 +45,10 @@ import { EnterGuardService } from './enter-guard-service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    MatButtonModule
   ],
   providers: [SignUpDeactivateService,EnterGuardService],
   bootstrap: [AppComponent]

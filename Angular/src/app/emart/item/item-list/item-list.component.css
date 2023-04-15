@@ -10,3 +10,25 @@
     height: 33px;
   }
   
+    /* Container styles */
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3rem;
+        padding: 1rem;
+        background-color: #f5f5f5;
+      }
+    
+      /* Column styles */
+      .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+       
+      }

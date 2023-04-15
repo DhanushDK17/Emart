@@ -1,61 +1,53 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="container">
     <div class="row">
-        <div class="col-10">
-            <div class="row">
-                <div class="col-md-6 col-sm-12 col-lg-4 my-2" *ngFor="let item of allItems">
-                    <div class="card bg-dark">
-                        <p class="card-header text-white bg-dark">{{ item.subCategory.category.name }}/{{ item.subCategory.name }}</p>
-                        <div class="media-container">
-                            <img class="card-img" [src]="item.image" width="244.53" height="244.53" [alt]=""
-                                enctype='multipart/form-data'>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="text-left font-weight-bolder text-white">Item:</p>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="card-title text-white"> {{ item.name }}</h5>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="card-text text-white">Price: {{item.price }}</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 align-right">
-                                        <button type="button" (click)="displayItemDetails(item.id)"
-                                            class="btn btn-info">
-                                            <i class="fas fa-edit"></i>Product Details</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div class="col-12 col-md-3">
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let category of categories | keyvalue">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="category-header" (click)="filterCategories(category)">
+                  <span class="category-title">{{ category.key }}</span>
                 </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button class="card" *ngFor="let subcategory of category.value" (click)="filterSubcategories(subcategory)">
+              <div>{{ subcategory }}</div>
+            </button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div class="col-12 col-md-9">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let item of filteredItems" >
+            <div >
+              <div class="card-img-top media-container">
+                <img  [src]="item.image" [alt]="item.name" width="181" height="150">
+              </div>
+              <div class="card-body">
+                <div class="row" >
+                  <div class="col-12">
+                    <p class="card-title mb-0">{{ item.name }}</p>
+                    
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <p class="card-text font-weight-bold">{{ item.price | currency:'USD':true }}</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <button type="button" class="btn btn-info btn-sm" (click)="displayItemDetails(item.id)">
+                      <i class="fas fa-info-circle mr-1"></i>Product Details
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="col-12" *ngIf="filteredItems.length === 0">
+            <p class="text-center">No items found.</p>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
