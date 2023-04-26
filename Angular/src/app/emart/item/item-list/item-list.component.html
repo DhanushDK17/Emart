@@ -1,12 +1,35 @@
 <div class="container">
+    
     <div class="row">
       <div class="col-12 col-md-3">
+        
         <mat-accordion>
-            <!-- <mat-form-field class="example-full-width">
-                <span matPrefix> </span>
-                <input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search">
-                <button matSuffix mat-button>search</button>
-                </mat-form-field> -->
+          <div class="example-form">
+            
+              <div class="example-form-field-container">
+                <input matInput type="text" [(ngModel)]="search">
+                <button mat-button (click)="searchy()">Search</button>
+              </div>
+           
+          </div>
+            <!-- <div class="example-form">
+                <mat-form-field class="example-form-field">
+                  <mat-label>Search</mat-label>
+                  <div class="example-form-field-container">
+                    <input matInput type="text" [(ngModel)]="search">
+                    <button mat-button (click)="searchy()">Search</button>
+                  </div>
+                </mat-form-field>
+              </div>-->
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <div class="category-header" (click)="selectAll()">
+                      <span class="category-title">All</span>
+                    </div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+              </mat-expansion-panel> 
           <mat-expansion-panel *ngFor="let category of categories | keyvalue">
             <mat-expansion-panel-header>
               <mat-panel-title>

@@ -65,5 +65,14 @@ filterSubcategories(subcategory:any){
     item.subCategory.name == subcategory
   );
 }
+selectAll(){
+   this.filteredItems = this.allItems;
+ }
+searchy(){
 
+  this.filteredItems = this.allItems.filter( item => 
+    item.name.toUpperCase() == this.search.toUpperCase()
+  );
+  console.log(this.filteredItems);
+}
 }
