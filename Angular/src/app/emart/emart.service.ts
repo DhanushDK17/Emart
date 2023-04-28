@@ -19,6 +19,7 @@ export class EmartService {
   allSellers: Seller[];
   currentBuyer: any;
   allBuyers: Buyer[];
+  cart: any[]
 
   constructor(protected http: HttpClient) {
     this.cartItems = [];
@@ -145,5 +146,8 @@ export class EmartService {
     let headers = new HttpHeaders();
     headers = headers.set("Authorization", credentials);
     return this.http.get("http://localhost:8083/login-service/emart/validate", { headers });
+  }
+  submitReview(review: String, itemID: any) {
+    
   }
 }

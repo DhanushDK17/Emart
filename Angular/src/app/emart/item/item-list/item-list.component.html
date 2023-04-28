@@ -1,6 +1,5 @@
-<div class="container">
-    
-    <div class="row">
+<div class="container" style="height: calc(100% - 130px)">
+    <div class="row" style="height: 90%">
       <div class="col-12 col-md-3">
         
         <mat-accordion>
@@ -44,10 +43,10 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-      <div class="col-12 col-md-9">
+      <div class="col-12 col-md-9" style="height: 100%;overflow-y: scroll;">
         <div class="row">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let item of filteredItems" >
-            <div >
+            <div style="cursor: pointer;" (click)="displayItemDetails(item.id)" >
               <div class="card-img-top media-container">
                 <img  [src]="item.image" [alt]="item.name" width="181" height="150">
               </div>
@@ -63,9 +62,12 @@
                     <p class="card-text font-weight-bold">{{ item.price | currency:'USD':true }}</p>
                   </div>
                   <div class="col-6 text-right">
-                    <button type="button" class="btn btn-info btn-sm" (click)="displayItemDetails(item.id)">
+                    <!-- <button type="button" class="btn btn-info btn-sm" (click)="displayItemDetails(item.id)">
                       <i class="fas fa-info-circle mr-1"></i>Product Details
-                    </button>
+                    </button> -->
+                    <button>-</button>
+                    {{ findItemCountInCart(item) }}
+                    <button>+</button>
                   </div>
                 </div>
               </div>

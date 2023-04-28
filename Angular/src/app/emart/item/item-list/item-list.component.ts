@@ -3,8 +3,6 @@ import { EmartService } from '../../emart.service';
 import { Item } from '../../item';
 import { Router } from '@angular/router';
 import {MatExpansionModule} from '@angular/material/expansion';
-
-
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
@@ -16,6 +14,7 @@ export class ItemListComponent implements OnInit {
   categoriesWithSubcategories: {[key: string]: string[]} = {}; // initialize as empty object
   categories: any;
   search : String ="";
+  cart: any
   constructor(
     protected emartService: EmartService,
     protected router: Router
@@ -30,8 +29,12 @@ export class ItemListComponent implements OnInit {
         console.log(response);
       }
     );
+    this.cart = this.emartService.getAllCart();
   }
 
+  findItemCountInCart(itemID: any) {
+    return 0;
+  }
   displayItemDetails(itemID: number) {
     this.router.navigate(['/item-display/' + itemID]);
   } 

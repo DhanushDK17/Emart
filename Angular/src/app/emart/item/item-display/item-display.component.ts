@@ -14,6 +14,7 @@ export class ItemDisplayComponent implements OnInit {
   item: Item;
   category: Category;
   subCategory: SubCategory;
+  reviewText: String;
   constructor(protected activatedRoute: ActivatedRoute,
     protected emartService: EmartService,
     protected router: Router) {
@@ -33,6 +34,9 @@ export class ItemDisplayComponent implements OnInit {
   addToCart(item: any) {
     this.emartService.addToCart(item);
     this.router.navigate(['item-list']);
+  }
+  addReview() {
+    
   }
 
 }
