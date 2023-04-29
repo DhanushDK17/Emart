@@ -1,5 +1,5 @@
 <div class="container" style="height: calc(100% - 130px)">
-    <div class="row" style="height: 90%">
+    <div class="row" style="height: 90%;width: 100%;">
       <div class="col-12 col-md-3">
         
         <mat-accordion>
@@ -46,32 +46,35 @@
       <div class="col-12 col-md-9" style="height: 100%;overflow-y: scroll;">
         <div class="row">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let item of filteredItems" >
-            <div style="cursor: pointer;" (click)="displayItemDetails(item.id)" >
-              <div class="card-img-top media-container">
-                <img  [src]="item.image" [alt]="item.name" width="181" height="150">
-              </div>
-              <div class="card-body">
-                <div class="row" >
-                  <div class="col-12">
-                    <p class="card-title mb-0">{{ item.name }}</p>
-                    
+            <mat-card>
+              <div style="cursor: pointer;" (click)="displayItemDetails(item.id)" >
+                <div class="card-img-top media-container">
+                  <img  [src]="item.image" [alt]="item.name" style="object-fit: contain;" width="100" height="100">
+                </div>
+                <div class="card-body">
+                  <div class="row" >
+                    <div class="col-12">
+                      <p class="card-title mb-0">{{ item.name }}</p>
+                      
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <p class="card-text font-weight-bold">{{ item.price | currency:'USD':true }}</p>
+                    </div>
+                    <div class="col-6 text-right">
+                      <!-- <button type="button" class="btn btn-info btn-sm" (click)="displayItemDetails(item.id)">
+                        <i class="fas fa-info-circle mr-1"></i>Product Details
+                      </button> -->
+                      <!-- <button>-</button>
+                      {{ findItemCountInCart(item) }}
+                      <button>+</button> -->
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-6">
-                    <p class="card-text font-weight-bold">{{ item.price | currency:'USD':true }}</p>
-                  </div>
-                  <div class="col-6 text-right">
-                    <!-- <button type="button" class="btn btn-info btn-sm" (click)="displayItemDetails(item.id)">
-                      <i class="fas fa-info-circle mr-1"></i>Product Details
-                    </button> -->
-                    <button>-</button>
-                    {{ findItemCountInCart(item) }}
-                    <button>+</button>
-                  </div>
-                </div>
               </div>
-            </div>
+            </mat-card>
+            
           </div>
           <div class="col-12" *ngIf="filteredItems.length === 0">
             <p class="text-center">No items found.</p>

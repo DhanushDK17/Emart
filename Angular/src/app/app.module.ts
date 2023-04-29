@@ -9,6 +9,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon'; 
+import {MatCardModule} from '@angular/material/card'; 
 
 import { ItemListComponent } from './emart/item/item-list/item-list.component';
 import { ItemDisplayComponent } from './emart/item/item-display/item-display.component';
@@ -61,7 +62,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatButtonModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [SignUpDeactivateService,EnterGuardService],
   bootstrap: [AppComponent]

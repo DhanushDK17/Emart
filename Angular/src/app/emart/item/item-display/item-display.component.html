@@ -1,25 +1,49 @@
-<div class="container mx-5 my-5">
-  <div class="row content ">
-    <div class="col-md-5">
-      <img class="card-img-top " [src]="item?.image" alt="item.name" style="width:300px" enctype='multipart/form-data'>
+<div class="container mx-5 my-5" style="width: 100%">
+  <button style="margin-bottom: 10px;" mat-raised-button (click)="handleBack()"><-Back</button>
+  <div class="row content" style="display: flex;justify-content: center;">
+    <div class="col-md-5" style="margin-right: 10px;display: flex;align-items: center;justify-content: center;border-radius: 10px;">
+      <!-- <img class="card-img-top " [src]="item?.image" alt="item.name" style="width:300px" enctype='multipart/form-data'> -->
+      <mat-card>
+        <img class="card-img-top " [src]="item?.image" alt="item.name" style="width:300px" enctype='multipart/form-data'>
+      </mat-card>
     </div>
-    <div class="col-md-7 ">
-      <div class="container ">
-        <h3><small>Product Details</small></h3>
-        <hr>
-        <h2>{{item?.name}}</h2>
-        <h3>{{item?.price}}</h3>
-        <button type="button" class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
+    <div class="col-md-6" style="border: 1px solid black;border-radius: 10px;">
+      <div class="container" style="padding: 10px;">
+        <!-- <h3><small>Product Details</small></h3> -->
+        <div style="display: flex; justify-content: space-between;">
+          <h2>{{item?.name}}</h2>
+          <div>
+            <span [class.material-icons] = "rating > 0" (click)="modifyRating(1)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+            <span [class.material-icons] = "rating > 1" (click)="modifyRating(2)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+            <span [class.material-icons] = "rating > 2" (click)="modifyRating(3)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+            <span [class.material-icons] = "rating > 3" (click)="modifyRating(4)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+            <span [class.material-icons] = "rating > 4" (click)="modifyRating(5)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+          </div>  
+        </div>
+        
+        <h3 style="color: green;">${{item?.price}}</h3>
+        <button mat-raised-button style="margin-right: 20px" (click)="deleteCartItem(item.id)">-</button>
+        <span style="margin-right: 20px">{{countInCart}}</span>
+        <button mat-raised-button (click)="addToCart(item)">+</button>
+        <!-- <button type="button" class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button> -->
       </div>
       <div class="container-fluid ">
         <br>
         <p class="text-left">{{item?.description}}</p>
         <br><br>
       </div>
-      <h4 class="text-center">Leave a Review:</h4>
+         
       <form role="form">
         <div class="form-group mx-5">
-          <textarea [(ngModel)]="reviewText" class="form-control" rows="3" required></textarea>
+          <h4 class="">Leave a Review:</h4>
+          <div>
+            <span [class.material-icons] = "rating > 0" (click)="modifyRating(1)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+            <span [class.material-icons] = "rating > 1" (click)="modifyRating(2)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+            <span [class.material-icons] = "rating > 2" (click)="modifyRating(3)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+            <span [class.material-icons] = "rating > 3" (click)="modifyRating(4)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+            <span [class.material-icons] = "rating > 4" (click)="modifyRating(5)" class="material-symbols-outlined" style="cursor:pointer">star</span>
+          </div>  
+          <textarea [(ngModel)]="reviewText" [ngModelOptions]="{standalone: true}" class="form-control" rows="3" required></textarea>
         </div>
         <div class="col text-center">
           <button type="submit" class="btn btn-success center-block" (click)="addReview()">Submit</button>

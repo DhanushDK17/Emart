@@ -19,7 +19,6 @@ export class EmartService {
   allSellers: Seller[];
   currentBuyer: any;
   allBuyers: Buyer[];
-  cart: any[]
 
   constructor(protected http: HttpClient) {
     this.cartItems = [];
@@ -54,7 +53,13 @@ export class EmartService {
   }
 
   addToCart(itemObj: any) {
-    this.cartItems.push(itemObj);
+    itemObj.quantity = 1
+    let cartIndex = this.cartItems.findIndex(item => item.id == itemObj.id);
+    if (cartIndex == -1) {
+      this.cartItems.push(itemObj);
+    } else {
+      this.cartItems[cartIndex].quantity += 1
+    }
   }
 
   getAllCart() {
