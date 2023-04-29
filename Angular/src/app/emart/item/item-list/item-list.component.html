@@ -6,7 +6,7 @@
           <div class="example-form">
             
               <div class="example-form-field-container">
-                <input matInput type="text" [(ngModel)]="search">
+                <input matInput type="text" (change)="searchy()" [(ngModel)]="search">
                 <button mat-button (click)="searchy()">Search</button>
               </div>
            
