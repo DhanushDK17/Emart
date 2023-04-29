@@ -8,8 +8,10 @@
         <h3><small>Product Details</small></h3>
         <hr>
         <h2>{{item?.name}}</h2>
-        <h3>{{item?.price}}</h3>
-        <button type="button" class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
+        <h3>Price: Rs. {{item?.price}} /-</h3>
+        <h3>Available Quantity: {{item?.quantity}}</h3>
+         <B>Count</B> &nbsp;<input matInput type="text" style="width:40px;"[(ngModel)]="count">
+        &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
       </div>
       <div class="container-fluid ">
         <br>
@@ -22,7 +24,7 @@
           <textarea class="form-control" rows="3" required></textarea>
         </div>
         <div class="col text-center">
-          <button type="submit" class="btn btn-success center-block">Submit</button>
+          <button type="submit" class="btn btn-success center-block" >Submit</button>
         </div>
       </form>
       <br>

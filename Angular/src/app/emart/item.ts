@@ -10,6 +10,7 @@ export interface Item{
     description: string,
     stock: number,
     remarks: string,
-    image: string
+    image: string,
+    quantity: number
 
 }

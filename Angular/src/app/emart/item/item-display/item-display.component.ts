@@ -14,6 +14,7 @@ export class ItemDisplayComponent implements OnInit {
   item: Item;
   category: Category;
   subCategory: SubCategory;
+  count : number;
   constructor(protected activatedRoute: ActivatedRoute,
     protected emartService: EmartService,
     protected router: Router) {
@@ -25,14 +26,17 @@ export class ItemDisplayComponent implements OnInit {
       this.emartService.getItem(id).subscribe(
         (response: any) => {
           this.item = response;
+          console.log(response);
         }
       );
     });
   }
 
   addToCart(item: any) {
+    for (let i = 0; i < this.count; i++) {
     this.emartService.addToCart(item);
     this.router.navigate(['item-list']);
   }
 
+  }
 }
