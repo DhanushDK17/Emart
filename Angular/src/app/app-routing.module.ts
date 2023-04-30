@@ -6,40 +6,39 @@ import { CartListComponent } from './emart/cart/cart-list/cart-list.component';
 import { BillViewComponent } from './emart/bill/bill-view/bill-view.component';
 import { BillListComponent } from './emart/bill/bill-list/bill-list.component';
 import { LoginComponent } from './emart/signup/login/login.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LogoutComponent } from './emart/signup/logout/logout.component';
 import { BuyerSignupComponent } from './emart/signup/buyer-signup/buyer-signup.component';
 import { SignUpDeactivateService } from './sign-up-can-deactivate.service';
 import { ErrorComponent } from './error/error.component';
 import { EnterGuardService } from './enter-guard-service';
 const routes: Routes = [
+                        // {
+                        //   path: '',
+                        //   component:LoginComponent
+                        // },
                         {
-                            path: '',
-                              component:LoginComponent
+                          path: '',
+                          component:LandingPageComponent
                         },
                         {
                           path: 'buyer-signup',
-                            component:BuyerSignupComponent,
-                           canDeactivate:[SignUpDeactivateService]
-                            
-
-                      },
+                          component:BuyerSignupComponent,
+                          canDeactivate:[SignUpDeactivateService]
+                        },
                         {
                           path: 'item-display/:iId',
                           component: ItemDisplayComponent,
-                          
                           canActivate:[EnterGuardService]
                         },
                         {
                           path: 'item-list',
                           component: ItemListComponent,
-                          
                           canActivate:[EnterGuardService]
                         },
                         {
                           path: 'cart-list',
                           component: CartListComponent,
-                          
-                          
                           canActivate:[EnterGuardService]
                         },
                         {

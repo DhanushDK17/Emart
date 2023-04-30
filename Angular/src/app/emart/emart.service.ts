@@ -53,7 +53,13 @@ export class EmartService {
   }
 
   addToCart(itemObj: any) {
-    this.cartItems.push(itemObj);
+    itemObj.quantity = 1
+    let cartIndex = this.cartItems.findIndex(item => item.id == itemObj.id);
+    if (cartIndex == -1) {
+      this.cartItems.push(itemObj);
+    } else {
+      this.cartItems[cartIndex].quantity += 1
+    }
   }
 
   getAllCart() {
@@ -145,5 +151,8 @@ export class EmartService {
     let headers = new HttpHeaders();
     headers = headers.set("Authorization", credentials);
     return this.http.get("http://localhost:8083/login-service/emart/validate", { headers });
+  }
+  submitReview(review: String, itemID: any) {
+    
   }
 }
