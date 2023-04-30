@@ -2,6 +2,16 @@
 .bg-dark {
     background-color: orange !important;
 }
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: orange;
+}
+.mat-ripple {
+  width: 50%;
+}
+input {
+  border-radius: 30px;
+  border: 0;
+}
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,

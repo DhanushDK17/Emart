@@ -19,7 +19,7 @@ export class LandingPageComponent implements OnInit {
   buyermobile: number;
   buyerdate: Date;
   buyers: any;
-  sign: string;
+  sign: string = 'buyer';
   errorMessage: string;
   username: string;
   password: string;
@@ -49,7 +49,6 @@ export class LandingPageComponent implements OnInit {
   }
   validate() {
     if (this.sign == 'buyer') {
-
       this.emartService
         .validateBuyer(this.username, this.password)
         .subscribe(
