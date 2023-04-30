@@ -58,7 +58,9 @@ export class EmartService {
   }
 
   addToCart(itemObj: any) {
+
     this.cartItems.push(itemObj);
+    console.log('ca',this.cartItems)
   }
 
   getAllCart() {
@@ -66,6 +68,7 @@ export class EmartService {
   }
 
   setAllCart(cartItems: any) {
+
     this.cartItems = cartItems;
 
   }
@@ -124,8 +127,8 @@ export class EmartService {
 
 
   addBuyer(buyer: Buyer) {
-    const body=JSON.stringify(buyer);
-    return this.http.post("http://localhost:8083/BuyerSignupService/buyer", body);
+    //const body=JSON.stringify(buyer);
+    return this.http.post("http://localhost:8083/BuyerSignupService/buyer", buyer);
   }
 
  

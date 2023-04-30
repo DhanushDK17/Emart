@@ -11,9 +11,12 @@ import { BuyerSignupComponent } from './emart/signup/buyer-signup/buyer-signup.c
 import { SignUpDeactivateService } from './sign-up-can-deactivate.service';
 import { ErrorComponent } from './error/error.component';
 import { EnterGuardService } from './enter-guard-service';
-const routes: Routes = [
+const routes: Routes = [{
+                         path: '',
+                         component:ItemListComponent
+                        },
                         {
-                            path: '',
+                              path: 'login',
                               component:LoginComponent
                         },
                         {
@@ -27,32 +30,28 @@ const routes: Routes = [
                           path: 'item-display/:iId',
                           component: ItemDisplayComponent,
                           
-                          canActivate:[EnterGuardService]
+   
                         },
                         {
                           path: 'item-list',
                           component: ItemListComponent,
                           
-                          canActivate:[EnterGuardService]
                         },
                         {
                           path: 'cart-list',
                           component: CartListComponent,
-                          
-                          
-                          canActivate:[EnterGuardService]
                         },
                         {
                           path: 'bill-view',
                           component: BillViewComponent,
                           
-                          canActivate:[EnterGuardService]
+
                         },
                         {
                           path: 'bill-list',
                           component: BillListComponent,
                           
-                          canActivate:[EnterGuardService]
+
                         },
                         {
                           path: 'logout',

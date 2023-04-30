@@ -20,6 +20,7 @@ export class ItemDisplayComponent implements OnInit {
   req: Review;
   id: any;
   currentReviews: any;
+  rating: 0;
   constructor(protected activatedRoute: ActivatedRoute,
     protected emartService: EmartService,
     protected router: Router) {
@@ -67,4 +68,14 @@ export class ItemDisplayComponent implements OnInit {
     this.review = value;
   }
 
+  getLoggedIn(){
+    return sessionStorage.getItem('key');//retrieving session storage item for login nav bar stability
+  }
+
+  login(){
+    this.router.navigate(['login']);
+  }
+  guest(){
+    this.router.navigate(['login']);
+  }
 }

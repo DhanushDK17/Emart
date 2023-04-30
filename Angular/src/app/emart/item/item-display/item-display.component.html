@@ -10,34 +10,42 @@
         <h2>{{item?.name}}</h2>
         <h3>Price: Rs. {{item?.price}} /-</h3>
         <h3>Available Quantity: {{item?.quantity}}</h3>
-         <B>Count</B> &nbsp;<input matInput type="text" style="width:40px;"[(ngModel)]="count">
-        &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
+        <B>Count</B> &nbsp;<input matInput type="text" style="width:40px;" [(ngModel)]="count">
+        &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary"  *ngIf="getLoggedIn()"   (click)="addToCart(item)">Add to
+          Cart</button>&nbsp;
+          &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary"  *ngIf="!getLoggedIn()" (click)="login()">Login to
+            Checkout</button>
+          &nbsp;
+          &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary" *ngIf="!getLoggedIn()" (click)="addToCart(item)">Checkout as
+            Guest</button>
       </div>
       <div class="container-fluid ">
         <br>
         <p class="text-left">{{item?.description}}</p>
         <br><br>
       </div>
-      <div>
+
+      <div *ngIf="getLoggedIn()">
         <h2>Reviews</h2><mat-accordion>
-        <mat-expansion-panel hideToggle *ngFor="let item of currentReviews">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-            <b> #User: </b> &nbsp;&nbsp;  {{item.name}}
-            </mat-panel-title>
-            <mat-panel-description>
-              {{item.review}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-        </mat-expansion-panel>
-      </mat-accordion></div>
-      <h4 class="text-center">Leave a Review:</h4>
-      <form role="form">
+          <mat-expansion-panel hideToggle *ngFor="let item of currentReviews">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b> #User: </b> &nbsp;&nbsp; {{item.name}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{item.review}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <h4 class="text-center" *ngIf="getLoggedIn()">Leave a Review:</h4>
+      <form role="form" *ngIf="getLoggedIn()">
         <div class="form-group mx-5">
           <input type="text" class="form-control" rows="3" [value]="review" (input)="onValueChange($event)" />
         </div>
         <div class="col text-center">
-          <button  class="btn btn-success center-block" (click)="addReview()">Submit</button>
+          <button class="btn btn-success center-block" (click)="addReview()">Submit</button>
         </div>
       </form>
       <br>

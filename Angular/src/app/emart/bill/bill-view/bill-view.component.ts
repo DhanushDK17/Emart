@@ -23,6 +23,7 @@ export class BillViewComponent implements OnInit {
     protected router: Router, protected activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.currentBuyer=  JSON.parse(localStorage.getItem('i1')); 
+    console.log(this.currentBuyer)
     this.cartItems = this.emartService.getAllCart();
     let size = this.cartItems.length;
     for (let i = 0; i < size; i++) {

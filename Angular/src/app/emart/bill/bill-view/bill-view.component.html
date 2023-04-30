@@ -19,19 +19,19 @@
                 </div>
                 <div class="col-6">
                     <div class="float-right">
-                        Buyer Name: {{ currentBuyer.username }}
+                      Buyer Name: {{ currentBuyer?.username }} 
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <div class="float-left">
-                        Date: {{ currentBuyer.date | date:'fullDate'}}
+                         Date: {{ currentBuyer?.date | date:'fullDate'}} 
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="float-right">
-                        Buyer Id: {{currentBuyer.id }}
+                        Buyer Id: {{currentBuyer?.id }} 
                     </div>
                 </div>
             </div>
@@ -69,11 +69,22 @@
             </tbody>
         </table>
     </div>
+   
     <div class="row m-2">
         <div class="table-responsive m-5">
             <button type="button" class="btn btn-secondary ml-5 w-75" (click)="addBill()">
                 Pay Amount
             </button>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="float-right">
+          Default Card: {{ currentBuyer?.card }} 
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="float-right">
+          Shipping Adress: {{ currentBuyer?.shipping }} 
         </div>
     </div>
 </div>

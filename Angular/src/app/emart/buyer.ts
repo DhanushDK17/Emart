@@ -4,5 +4,9 @@ export interface Buyer{
     password: string,
     email: string,
     mobile: number,
-    date: Date
+    date: Date,
+    firstname: string,
+    lastname: string,
+    card: string,
+    shipping: string
 }

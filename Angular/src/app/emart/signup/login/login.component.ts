@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  sign: string;
+  sign: string = 'buyer';
   errorMessage: string;
   username: string;
   password: string;

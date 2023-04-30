@@ -7,8 +7,9 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Item ID</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <!-- <th>Quantity</th> -->
                             <th></th>
                         </tr>
                     </thead>
@@ -17,7 +18,8 @@
                             <td>{{ item.id }}</td>
                             <td>{{ item.name }}</td>
                             <td>{{ item.price }}</td>
-                            <td><a><i class='material-icons' (click)="deleteCartItem(item.id)">delete</i></a></td>
+                            <!-- <td>{{ item.quantity }}</td> -->
+                            <td><a><i class='material-icons' style="cursor: pointer;" (click)="deleteCartItem(item.id)">delete</i></a></td>
                         </tr>
                     </tbody>
                 </table>

@@ -32,4 +32,5 @@ export class CartListComponent implements OnInit {
     this.emartService.setAllCart(Items);
     this.router.navigate(['bill-view']);
   }
+  
 }
