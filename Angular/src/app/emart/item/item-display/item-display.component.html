@@ -18,13 +18,26 @@
         <p class="text-left">{{item?.description}}</p>
         <br><br>
       </div>
+      <div>
+        <h2>Reviews</h2><mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let item of currentReviews">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+            <b> #User: </b> &nbsp;&nbsp;  {{item.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{item.review}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+      </mat-accordion></div>
       <h4 class="text-center">Leave a Review:</h4>
       <form role="form">
         <div class="form-group mx-5">
-          <textarea class="form-control" rows="3" required></textarea>
+          <input type="text" class="form-control" rows="3" [value]="review" (input)="onValueChange($event)" />
         </div>
         <div class="col text-center">
-          <button type="submit" class="btn btn-success center-block" >Submit</button>
+          <button  class="btn btn-success center-block" (click)="addReview()">Submit</button>
         </div>
       </form>
       <br>

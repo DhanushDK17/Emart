@@ -4,6 +4,7 @@ import { EmartService } from '../../emart.service';
 import { Item } from '../../item';
 import { SubCategory } from '../../sub-category';
 import { Category } from '../../category';
+import { Review } from '../../review';
 
 @Component({
   selector: 'app-item-display',
@@ -15,6 +16,10 @@ export class ItemDisplayComponent implements OnInit {
   category: Category;
   subCategory: SubCategory;
   count : number;
+  review: string ="";
+  req: Review;
+  id: any;
+  currentReviews: any;
   constructor(protected activatedRoute: ActivatedRoute,
     protected emartService: EmartService,
     protected router: Router) {
@@ -22,13 +27,20 @@ export class ItemDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      let id: any = params.get('iId');
-      this.emartService.getItem(id).subscribe(
+      this.id = params.get('iId');
+      this.emartService.getReviews(this.id).subscribe(
+        (response: any) => {
+          this.currentReviews = response;
+          console.log(response);
+        }
+      );
+      this.emartService.getItem(this.id).subscribe(
         (response: any) => {
           this.item = response;
           console.log(response);
         }
-      );
+      ); 
+     
     });
   }
 
@@ -37,6 +49,22 @@ export class ItemDisplayComponent implements OnInit {
     this.emartService.addToCart(item);
     this.router.navigate(['item-list']);
   }
+}
 
+  addReview() {
+    let a = JSON.parse(localStorage.getItem('i1'));
+    this.req = {
+      id: null,
+      item: this.id,
+      review: this.review,
+      name: a.username
+    }
+  this.emartService.addreview(this.req); 
   }
+  public onValueChange(event: Event): void {
+    //console.log(event.target);
+    const value = (event.target as any).value;
+    this.review = value;
+  }
+
 }

@@ -6,11 +6,13 @@ import { Bill } from './bill';
 import { Seller } from './seller';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Buyer } from './buyer';
+import { Review } from './review';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmartService {
+ 
   categories: Category[];
   subCategories: SubCategory[];
   allItems: Item[];
@@ -50,6 +52,9 @@ export class EmartService {
   //Accessing end point for retrieving an item.
   getItem(id: string): any {
     return this.http.get("http://localhost:8083/buyer-item-service/emart/item/" + id);
+  }
+  getReviews(id: string): any {
+    return this.http.get("http://localhost:8083/buyer-item-service/emart/review/" + id);
   }
 
   addToCart(itemObj: any) {
@@ -111,14 +116,19 @@ export class EmartService {
     this.allBills = currentBuyer.allBills;
   }
 
-
-
-
-  addBuyer(buyer: Buyer) {
-    return this.http.post("http://localhost:8083/BuyerSignupService/buyer", buyer);
+  addreview(review: Review){
+    console.log('service',review)
+    this.http.post("http://localhost:8083/buyer-item-service/emart/review",review).subscribe((res) => console.log(res));
+    console.log('service2',review)
   }
 
 
+  addBuyer(buyer: Buyer) {
+    const body=JSON.stringify(buyer);
+    return this.http.post("http://localhost:8083/BuyerSignupService/buyer", body);
+  }
+
+ 
   //Accessing end point for buyer and retrieving its observable.
   getBuyer() {
     //i1:local storage for current buyer
