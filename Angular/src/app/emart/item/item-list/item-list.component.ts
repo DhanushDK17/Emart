@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmartService } from '../../emart.service';
-import { Item } from '../../item';
 import { Router } from '@angular/router';
-import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @Component({
@@ -16,6 +14,8 @@ export class ItemListComponent implements OnInit {
   categoriesWithSubcategories: {[key: string]: string[]} = {}; // initialize as empty object
   categories: any;
   search : String ="";
+  selectedCategory: any = [];
+  selectedSubCategory: any = [];
   constructor(
     protected emartService: EmartService,
     protected router: Router
@@ -49,7 +49,6 @@ export class ItemListComponent implements OnInit {
         categories[categoryName] = new Set([subCategoryName]);
       }
     }
-  
     console.log(categories);
     return categories;
   }
@@ -75,4 +74,22 @@ searchy(){
   );
   console.log(this.filteredItems);
 }
+filterCat() {
+  let subCategories = []
+  console.log(this.selectedCategory)
+  for (let index = 0; index < this.selectedCategory.length; index++) {
+    const element = this.selectedCategory[index];
+    subCategories = subCategories.concat(Array.from(element.value))
+  }
+  this.selectedSubCategory = subCategories;
+  console.log(this.selectedSubCategory)
+  this.filteredItems = this.allItems.filter( item => 
+    this.selectedCategory.map(item => item.key).includes(item.subCategory.category.name)
+  );
+}
+filterSub() {
+  this.filteredItems = this.allItems.filter( item => 
+    this.selectedSubCategory.includes(item.subCategory.name)
+  );
+  }
 }

@@ -23,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatSelectModule} from '@angular/material/select'; 
 
 
 @NgModule({
@@ -49,7 +49,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     BrowserAnimationsModule,
     MatExpansionModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [SignUpDeactivateService,EnterGuardService],
   bootstrap: [AppComponent]

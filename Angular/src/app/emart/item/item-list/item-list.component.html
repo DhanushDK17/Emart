@@ -1,7 +1,7 @@
 <div class="container">
     
     <div class="row">
-      <div class="col-12 col-md-3">
+      <div class="col col-md-3">
         
         <mat-accordion>
           <div class="example-form">
@@ -44,35 +44,49 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-      <div class="col-12 col-md-9">
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let item of filteredItems" >
-            <div >
-              <div class="card-img-top media-container">
-                <img  [src]="item.image" [alt]="item.name" width="181" height="150">
-              </div>
-              <div class="card-body">
-                <div class="row" >
-                  <div class="col-12">
-                    <p class="card-title mb-0">{{ item.name }}</p>
-                    
-                  </div>
+      <div class="col-9">
+        <div class="row col-12" style="margin-bottom: 20px;">          
+          <mat-select [(ngModel)]="selectedCategory" class="col-3" placeholder="Select category" (ngModelChange)="filterCat()" multiple>
+            <mat-option [value]="category" *ngFor="let category of categories | keyvalue">
+              {{category.key}}
+            </mat-option>
+          </mat-select>
+          <mat-select *ngIf="selectedSubCategory.length!=0" [(ngModel)]="selectedSubCategory" class="col-3" placeholder="Select sub category" (ngModelChange)="filterSub()" multiple>
+            <mat-option [value]="subcategory" *ngFor="let subcategory of selectedSubCategory">
+              {{subcategory}}
+            </mat-option>
+          </mat-select>
+        </div>
+        <div class="col-12 col-md-12">
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let item of filteredItems" >
+              <div >
+                <div class="card-img-top media-container">
+                  <img  [src]="item.image" [alt]="item.name" width="181" height="150">
                 </div>
-                <div class="row">
-                  <div class="col-6">
-                    <p class="card-text font-weight-bold">{{ item.price | currency:'USD':true }}</p>
+                <div class="card-body">
+                  <div class="row" >
+                    <div class="col-12">
+                      <p class="card-title mb-0">{{ item.name }}</p>
+                      
+                    </div>
                   </div>
-                  <div class="col-6 text-right">
-                    <button type="button" class="btn btn-info btn-sm" (click)="displayItemDetails(item.id)">
-                      <i class="fas fa-info-circle mr-1"></i>Product Details
-                    </button>
+                  <div class="row">
+                    <div class="col-6">
+                      <p class="card-text font-weight-bold">{{ item.price | currency:'USD':true }}</p>
+                    </div>
+                    <div class="col-6 text-right">
+                      <button type="button" class="btn btn-info btn-sm" (click)="displayItemDetails(item.id)">
+                        <i class="fas fa-info-circle mr-1"></i>Product Details
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-12" *ngIf="filteredItems.length === 0">
-            <p class="text-center">No items found.</p>
+            <div class="col-12" *ngIf="filteredItems.length === 0">
+              <p class="text-center">No items found.</p>
+            </div>
           </div>
         </div>
       </div>

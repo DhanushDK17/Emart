@@ -4,6 +4,9 @@ import { Item } from '../../item';
 import { BillDetails } from '../../bill-details';
 import { Bill } from '../../bill';
 import { Router, ActivatedRoute } from '@angular/router';
+import html2canvas from "html2canvas";
+import jspdf from "jspdf";
+
 
 @Component({
   selector: 'app-bill-view',
@@ -47,5 +50,16 @@ export class BillViewComponent implements OnInit {
         }
       );
     this.router.navigate(['item-list']);
+  }
+  printReceipt() {
+    let data = document.getElementById(`guestbill`);
+    let height = data.getClientRects()[0].height;
+    let width = data.getClientRects()[0].width;
+    html2canvas(data).then(canvas => {
+      const content = canvas.toDataURL('image/png');
+      let pdfDocument = new jspdf(height > width ? 'portrait' : 'landscape' , 'px', [width,height]);
+      pdfDocument.addImage(content, 'png', 0, 0, width, height);
+      pdfDocument.save('dbaskitReceipt.pdf');
+    })
   }
 }
