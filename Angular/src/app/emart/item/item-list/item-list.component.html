@@ -45,17 +45,12 @@
         </mat-accordion>
       </div>
       <div class="col-9">
-        <div class="row col-12" style="margin-bottom: 20px;">          
-          <mat-select [(ngModel)]="selectedCategory" class="col-3" placeholder="Select category" (ngModelChange)="filterCat()" multiple>
-            <mat-option [value]="category" *ngFor="let category of categories | keyvalue">
-              {{category.key}}
-            </mat-option>
-          </mat-select>
-          <mat-select *ngIf="selectedSubCategory.length!=0" [(ngModel)]="selectedSubCategory" class="col-3" placeholder="Select sub category" (ngModelChange)="filterSub()" multiple>
-            <mat-option [value]="subcategory" *ngFor="let subcategory of selectedSubCategory">
-              {{subcategory}}
-            </mat-option>
-          </mat-select>
+        <div class="row col-12" style="margin-bottom: 20px;">
+          <input style="padding: 10px;" type="text" (change)="filterUsingName()" [(ngModel)]="filterName" placeholder="Vizio TV ...">
+          <mat-slider [(ngModel)]="maxPrice" (ngModelChange)="filterItems()" min="0" [max]="maxp" step="10" thumbLabel showTickMarks discrete>
+            <input matSliderThumb>
+          </mat-slider>
+          <input style="padding: 10px; width: 80px;" type="text" (change)="filterItems()" [(ngModel)]="maxPrice" placeholder="300">
         </div>
         <div class="col-12 col-md-12">
           <div class="row">

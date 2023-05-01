@@ -14,8 +14,9 @@ export class ItemListComponent implements OnInit {
   categoriesWithSubcategories: {[key: string]: string[]} = {}; // initialize as empty object
   categories: any;
   search : String ="";
-  selectedCategory: any = [];
-  selectedSubCategory: any = [];
+  maxPrice: any = 300;
+  maxp: any = 0;
+  filterName: any = '';
   constructor(
     protected emartService: EmartService,
     protected router: Router
@@ -27,7 +28,12 @@ export class ItemListComponent implements OnInit {
         this.allItems = response;
         this.filteredItems=response;
         this.categories=this.getCategoriesWithSubcategories(response);
-        console.log(response);
+        for (let index = 0; index < this.allItems.length; index++) {
+          const element = this.allItems[index];
+          if (this.maxp < element.price) {
+            this.maxp = element.price;
+          }
+        }
       }
     );
   }
@@ -74,22 +80,16 @@ searchy(){
   );
   console.log(this.filteredItems);
 }
-filterCat() {
-  let subCategories = []
-  console.log(this.selectedCategory)
-  for (let index = 0; index < this.selectedCategory.length; index++) {
-    const element = this.selectedCategory[index];
-    subCategories = subCategories.concat(Array.from(element.value))
-  }
-  this.selectedSubCategory = subCategories;
-  console.log(this.selectedSubCategory)
-  this.filteredItems = this.allItems.filter( item => 
-    this.selectedCategory.map(item => item.key).includes(item.subCategory.category.name)
-  );
+filterItems() {
+  console.log(this.maxPrice)
+  this.filteredItems = this.allItems.filter(item =>
+    item.price <= this.maxPrice)
 }
-filterSub() {
-  this.filteredItems = this.allItems.filter( item => 
-    this.selectedSubCategory.includes(item.subCategory.name)
-  );
-  }
+filterUsingName() {
+  this.filteredItems = this.allItems.filter(item => item.name.toLowerCase().includes(this.filterName.toLowerCase()))
+}
+formatLabel(value: number): string {
+  return `${value}`;
+}
+
 }
