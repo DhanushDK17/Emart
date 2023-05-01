@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
+// import { LandingPageComponent } from './landing-page/landing-page.component';
 
 import { ItemListComponent } from './emart/item/item-list/item-list.component';
 import { ItemDisplayComponent } from './emart/item/item-display/item-display.component';
@@ -45,7 +45,6 @@ import {MatSliderModule} from '@angular/material/slider';
     HeaderComponent,
     LogoutComponent,
     ErrorComponent,
-    LandingPageComponent
   ],
   imports: [
     BrowserModule,
