@@ -18,6 +18,10 @@ export class BuyerSignupComponent implements OnInit {
   buyermobile: number;
   buyerdate: Date;
   buyers: any;
+  firstname: string = '';
+  lastname: string = '';
+  card: string ='';
+  shipping: string ='';
   constructor(protected emartService: EmartService, protected router: Router) {
    }
   ngOnInit(): void {
@@ -29,7 +33,12 @@ export class BuyerSignupComponent implements OnInit {
       password: this.buyerpassword,
       email: this.buyeremail,
       mobile: this.buyermobile,
-      date: this.buyerdate
+      date: this.buyerdate,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      card: this.card,
+      shipping: this.shipping
+
     };
 
     this.emartService.addBuyer(buyer).subscribe(

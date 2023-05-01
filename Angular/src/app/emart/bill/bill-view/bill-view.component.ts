@@ -4,6 +4,9 @@ import { Item } from '../../item';
 import { BillDetails } from '../../bill-details';
 import { Bill } from '../../bill';
 import { Router, ActivatedRoute } from '@angular/router';
+import html2canvas from "html2canvas";
+import jspdf from "jspdf";
+
 
 @Component({
   selector: 'app-bill-view',
@@ -25,6 +28,7 @@ export class BillViewComponent implements OnInit {
     protected router: Router, protected activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.currentBuyer=  JSON.parse(localStorage.getItem('i1')); 
+    console.log(this.currentBuyer)
     this.cartItems = this.emartService.getAllCart();
     let size = this.cartItems.length;
     for (let i = 0; i < size; i++) {
@@ -60,5 +64,16 @@ export class BillViewComponent implements OnInit {
     if (this.promo == "CS5391") {
       this.amount -= this.amount * 0.1
     }
+  }
+    printReceipt() {
+    let data = document.getElementById(`guestbill`);
+    let height = data.getClientRects()[0].height;
+    let width = data.getClientRects()[0].width;
+    html2canvas(data).then(canvas => {
+      const content = canvas.toDataURL('image/png');
+      let pdfDocument = new jspdf(height > width ? 'portrait' : 'landscape' , 'px', [width,height]);
+      pdfDocument.addImage(content, 'png', 0, 0, width, height);
+      pdfDocument.save('dbaskitReceipt.pdf');
+    })
   }
 }

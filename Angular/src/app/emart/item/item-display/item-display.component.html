@@ -9,44 +9,44 @@
     </div>
     <div class="col-md-6" style="border: 1px solid black;border-radius: 10px;">
       <div class="container" style="padding: 10px;">
-        <!-- <h3><small>Product Details</small></h3> -->
-        <div style="display: flex; justify-content: space-between;">
-          <h2>{{item?.name}}</h2>
-          <div>
-            <span [class.material-icons] = "rating > 0" (click)="modifyRating(1)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-            <span [class.material-icons] = "rating > 1" (click)="modifyRating(2)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-            <span [class.material-icons] = "rating > 2" (click)="modifyRating(3)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-            <span [class.material-icons] = "rating > 3" (click)="modifyRating(4)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-            <span [class.material-icons] = "rating > 4" (click)="modifyRating(5)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-          </div>  
-        </div>
-        
         <h3 style="color: green;">${{item?.price}}</h3>
-        <button mat-raised-button style="margin-right: 20px" (click)="deleteCartItem(item.id)">-</button>
-        <span style="margin-right: 20px">{{countInCart}}</span>
-        <button mat-raised-button (click)="addToCart(item)">+</button>
-        <!-- <button type="button" class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button> -->
+        <h3>Available Quantity: {{item?.quantity}}</h3>
+        <B>Count</B> &nbsp;<input matInput type="text" style="width:40px;padding: 10px;border: 1px solid black;" [(ngModel)]="count">
+        &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary"  *ngIf="getLoggedIn()"   (click)="addToCart(item)">Add to
+          Cart</button>&nbsp;
+          &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary"  *ngIf="!getLoggedIn()" (click)="login()">Login to
+            Checkout</button>
+          &nbsp;
+          &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary" *ngIf="!getLoggedIn()" (click)="addToCart(item)">Checkout as
+            Guest</button>
       </div>
       <div class="container-fluid ">
         <br>
         <p class="text-left">{{item?.description}}</p>
         <br><br>
       </div>
-         
-      <form role="form">
+
+      <div *ngIf="getLoggedIn()">
+        <h2>Reviews</h2><mat-accordion>
+          <mat-expansion-panel hideToggle *ngFor="let item of currentReviews">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b> #User: </b> &nbsp;&nbsp; {{item.name}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{item.review}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <h4 class="text-center" *ngIf="getLoggedIn()">Leave a Review:</h4>
+      <form role="form" *ngIf="getLoggedIn()">
         <div class="form-group mx-5">
-          <h4 class="">Leave a Review:</h4>
-          <div>
-            <span [class.material-icons] = "rating > 0" (click)="modifyRating(1)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-            <span [class.material-icons] = "rating > 1" (click)="modifyRating(2)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-            <span [class.material-icons] = "rating > 2" (click)="modifyRating(3)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-            <span [class.material-icons] = "rating > 3" (click)="modifyRating(4)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-            <span [class.material-icons] = "rating > 4" (click)="modifyRating(5)" class="material-symbols-outlined" style="cursor:pointer">star</span>
-          </div>  
-          <textarea [(ngModel)]="reviewText" [ngModelOptions]="{standalone: true}" class="form-control" rows="3" required></textarea>
+          <input type="text" class="form-control" rows="3" [value]="review" (input)="onValueChange($event)" />
         </div>
         <div class="col text-center">
-          <button type="submit" class="btn btn-success center-block" (click)="addReview()">Submit</button>
+          <button class="btn btn-success center-block" (click)="addReview()">Submit</button>
         </div>
       </form>
       <br>

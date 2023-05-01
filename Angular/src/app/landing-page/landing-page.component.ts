@@ -38,7 +38,11 @@ export class LandingPageComponent implements OnInit {
       password: this.buyerpassword,
       email: this.buyeremail,
       mobile: this.buyermobile,
-      date: this.buyerdate
+      date: this.buyerdate,
+      firstname: '',
+      lastname: '',
+      card: '',
+      shipping: ''
     };
 
     this.emartService.addBuyer(buyer).subscribe(

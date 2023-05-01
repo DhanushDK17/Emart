@@ -21,3 +21,9 @@ input {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:host ::ng-deep mat-slider.mat-slider.mat-slider-horizontal .mat-slider-ticks {
+    height: 20px;
+    opacity: 1;
+    background-size: 10.101% 2px !important;
+    transform: translateZ(0px) translateX(5.05051%);
+}

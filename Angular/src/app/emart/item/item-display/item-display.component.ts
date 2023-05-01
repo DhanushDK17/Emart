@@ -4,6 +4,7 @@ import { EmartService } from '../../emart.service';
 import { Item } from '../../item';
 import { SubCategory } from '../../sub-category';
 import { Category } from '../../category';
+import { Review } from '../../review';
 
 @Component({
   selector: 'app-item-display',
@@ -14,47 +15,69 @@ export class ItemDisplayComponent implements OnInit {
   item: Item;
   category: Category;
   subCategory: SubCategory;
-  reviewText: String;
-  rating: number;
-  cart: any;
-  countInCart: number
+  count : number;
+  review: string ="";
+  req: Review;
+  id: any;
+  currentReviews: any;
+  rating: 0;
   constructor(protected activatedRoute: ActivatedRoute,
     protected emartService: EmartService,
     protected router: Router) {
-      this.cart = emartService.cartItems;
      }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      let id: any = params.get('iId');
-      this.emartService.getItem(id).subscribe(
+      this.id = params.get('iId');
+      this.emartService.getItem(this.id).subscribe(
         (response: any) => {
           this.item = response;
-          this.rating = 3;
-          this.countInCart = this.cart.filter(item => item.id == this.item.id).length;
+          console.log(response);
+        }
+      ); 
+      this.emartService.getReviews(this.id).subscribe(
+        (response: any) => {
+          this.currentReviews = response;
+          console.log(response);
         }
       );
     });
   }
+
+  addToCart(item: any) {
+    for (let i = 0; i < this.count; i++) {
+    this.emartService.addToCart(item);
+    this.router.navigate(['item-list']);
+  }
+}
+
+  addReview() {
+    let a = JSON.parse(localStorage.getItem('i1'));
+    this.req = {
+      id: null,
+      item: this.id,
+      review: this.review,
+      name: a.username
+    }
+  this.emartService.addreview(this.req); 
+  }
+  public onValueChange(event: Event): void {
+    //console.log(event.target);
+    const value = (event.target as any).value;
+    this.review = value;
+  }
+
+  getLoggedIn(){
+    return sessionStorage.getItem('key');//retrieving session storage item for login nav bar stability
+  }
+
+  login(){
+    this.router.navigate(['login']);
+  }
+  guest(){
+    this.router.navigate(['login']);
+  }
   handleBack() {
     history.go(-1);
   }
-  addToCart(item: any) {
-    this.emartService.addToCart(item);
-    // this.router.navigate(['item-list']);
-  }
-  deleteCartItem(item: any) {
-    this.emartService.deleteCartItem(item);
-  }
-  modifyRating(r: number) {
-    if (r == this.rating) {
-      this.rating = 0
-    } else {
-      this.rating = r
-    }
-  }
-  addReview() {
-    
-  }
-
 }

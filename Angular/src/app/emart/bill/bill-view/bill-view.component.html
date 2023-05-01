@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container" id="guestbill">
     <div class="row mt-5">
         <div class="col">
             <div class="row mt-2">
-                <div class="col">
+                <div class="col" style="display: flex; justify-content: space-between;align-items: center;">
                     <h1>Bill</h1>
+                    <span class="material-symbols-outlined" (click)="printReceipt()" style="cursor:pointer">print</span>
                 </div>
             </div>
             <div class="row">
@@ -17,23 +18,23 @@
                         Contact Us: emart@abc.com
                     </div>
                 </div>
-                <div class="col-6">
+                <!-- <div class="col-6">
                     <div class="float-right">
-                        Buyer Name: {{ currentBuyer.username }}
+                      Buyer Name: {{ currentBuyer?.username }} 
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-6">
                     <div class="float-left">
-                        Date: {{ currentBuyer.date | date:'fullDate'}}
+                         Date: {{ currentBuyer?.date | date:'fullDate'}} 
                     </div>
                 </div>
-                <div class="col-6">
+                <!-- <div class="col-6">
                     <div class="float-right">
-                        Buyer Id: {{currentBuyer.id }}
+                        Buyer Id: {{currentBuyer?.id }} 
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -100,6 +101,16 @@
             <button type="button" class="btn btn-secondary ml-5 w-75" (click)="addBill()">
                 Pay Amount
             </button>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="float-right">
+            Default Card: {{ currentBuyer?.card }} 
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="float-right">
+            Shipping Adress: {{ currentBuyer?.shipping }} 
         </div>
     </div>
 </div>

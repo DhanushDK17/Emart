@@ -6,11 +6,13 @@ import { Bill } from './bill';
 import { Seller } from './seller';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Buyer } from './buyer';
+import { Review } from './review';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmartService {
+ 
   categories: Category[];
   subCategories: SubCategory[];
   allItems: Item[];
@@ -51,15 +53,14 @@ export class EmartService {
   getItem(id: string): any {
     return this.http.get("http://localhost:8083/buyer-item-service/emart/item/" + id);
   }
+  getReviews(id: string): any {
+    return this.http.get("http://localhost:8083/buyer-item-service/emart/review/" + id);
+  }
 
   addToCart(itemObj: any) {
-    itemObj.quantity = 1
-    let cartIndex = this.cartItems.findIndex(item => item.id == itemObj.id);
-    if (cartIndex == -1) {
-      this.cartItems.push(itemObj);
-    } else {
-      this.cartItems[cartIndex].quantity += 1
-    }
+
+    this.cartItems.push(itemObj);
+    console.log('ca',this.cartItems)
   }
 
   getAllCart() {
@@ -67,6 +68,7 @@ export class EmartService {
   }
 
   setAllCart(cartItems: any) {
+
     this.cartItems = cartItems;
 
   }
@@ -117,14 +119,19 @@ export class EmartService {
     this.allBills = currentBuyer.allBills;
   }
 
-
-
-
-  addBuyer(buyer: Buyer) {
-    return this.http.post("http://localhost:8083/BuyerSignupService/buyer", buyer);
+  addreview(review: Review){
+    console.log('service',review)
+    this.http.post("http://localhost:8083/buyer-item-service/emart/review",review).subscribe((res) => console.log(res));
+    console.log('service2',review)
   }
 
 
+  addBuyer(buyer: Buyer) {
+    //const body=JSON.stringify(buyer);
+    return this.http.post("http://localhost:8083/BuyerSignupService/buyer", buyer);
+  }
+
+ 
   //Accessing end point for buyer and retrieving its observable.
   getBuyer() {
     //i1:local storage for current buyer
@@ -151,8 +158,5 @@ export class EmartService {
     let headers = new HttpHeaders();
     headers = headers.set("Authorization", credentials);
     return this.http.get("http://localhost:8083/login-service/emart/validate", { headers });
-  }
-  submitReview(review: String, itemID: any) {
-    
   }
 }

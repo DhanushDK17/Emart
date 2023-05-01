@@ -23,39 +23,26 @@
                     <p class="text-danger">{{errorMessage}}</p>
                 </div>
                 <div class="card-body">
-                    <mat-tab-group>
-                        <mat-tab label="Login">
-                            <form action="">
-                                <div class="Form-group mx-2 my-3">
-                                    <!-- <h6>Sign in as</h6> -->
-                                    <div class="row mx-2 my-3">
-                                        <!-- <div class="col">
-                                            <input type="radio" name="signup" [(ngModel)]="sign" value="buyer">Buyer</div>
-                                        <div class="col">
-                                            <input type="radio" name="signup" [(ngModel)]="sign" value="seller">Seller
-                                        </div> -->
-                                        <div class="col">
-                                            <mat-radio-group aria-label="Select an option" class="row">
-                                                <mat-radio-button style="margin-right: 10px;" value="buyer">Buyer</mat-radio-button>
-                                                <mat-radio-button value="seller">Seller</mat-radio-button>
-                                            </mat-radio-group>  
-                                        </div>
-                                    </div>
-                                    <label for="username">USER</label>
-                                    <input type="text" class="form-control" id="username" [(ngModel)]="username"
-                                        placeholder="username" name="username" />
+                    <form action="">
+                        <div class="Form-group mx-2 my-3">
+                            <div class="row mx-2 my-3">
+                                <div class="col">
+                                   </div>
+                                <div class="col">
+                                   
                                 </div>
-                                <div class="Form-group mx-2 my-3">
-                                    <label for="pass">PASSWORD</label>
-                                    <input type="password" class="form-control" id="pass" [(ngModel)]="password"
-                                        placeholder="password" name="password" />
-                                </div>
-                                <button type="submit" class="btn btn-dark float-right" (click)="validate()">LOGIN</button>
-                            </form>
-                        </mat-tab>
-                        <mat-tab label="SignUp"> Content 2 </mat-tab>
-                        <mat-tab label="Third"> Content 3 </mat-tab>
-                      </mat-tab-group>              
+                            </div>
+                            <label for="username">USER</label>
+                            <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                                placeholder="username" name="username" />
+                        </div>
+                        <div class="Form-group mx-2 my-3">
+                            <label for="pass">PASSWORD</label>
+                            <input type="password" class="form-control" id="pass" [(ngModel)]="password"
+                                placeholder="password" name="password" />
+                        </div>
+                        <button type="submit" class="btn btn-dark float-right" (click)="validate()">LOGIN</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -64,5 +51,5 @@
     </div>
 </div>
 <footer class="sticky-footer fixed-bottom">
-    2023 @ DBASKIT
+    2024 @Copyright
 </footer>

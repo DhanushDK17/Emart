@@ -4,12 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import {MatRadioModule} from '@angular/material/radio'; 
-import { MatTabsModule } from '@angular/material/tabs';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon'; 
-import {MatCardModule} from '@angular/material/card'; 
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 import { ItemListComponent } from './emart/item/item-list/item-list.component';
 import { ItemDisplayComponent } from './emart/item/item-display/item-display.component';
@@ -25,11 +20,15 @@ import { SignUpDeactivateService } from './sign-up-can-deactivate.service';
 import { ErrorComponent } from './error/error.component';
 import { EnterGuardService } from './enter-guard-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LandingPageComponent } from './landing-page/landing-page.component';
 
+import {MatRadioModule} from '@angular/material/radio'; 
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatIconModule} from '@angular/material/icon'; 
+import {MatCardModule} from '@angular/material/card'; 
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatSliderModule} from '@angular/material/slider'; 
 
 
 @NgModule({
@@ -57,11 +56,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatExpansionModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatTabsModule,
+    MatSliderModule,
     MatRadioModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatFormFieldModule,
+    MatTabsModule,
     MatIconModule,
     MatCardModule
   ],
