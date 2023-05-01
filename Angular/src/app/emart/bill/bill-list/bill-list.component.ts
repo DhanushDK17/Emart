@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmartService } from '../../emart.service';
-
-
+import html2canvas from "html2canvas";
+import jspdf from "jspdf";
 @Component({
   selector: 'app-bill-list',
   templateUrl: './bill-list.component.html',
@@ -22,5 +22,16 @@ export class BillListComponent implements OnInit {
     else {
       this.showBill = true;
     }
+  }
+  printReceipt(id: any) {
+    let data = document.getElementById(`bill${id}`);
+    let height = data.getClientRects()[0].height;
+    let width = data.getClientRects()[0].width;
+    html2canvas(data).then(canvas => {
+      const content = canvas.toDataURL('image/png');
+      let pdfDocument = new jspdf(height > width ? 'portrait' : 'landscape' , 'px', [width,height]);
+      pdfDocument.addImage(content, 'png', 0, 0, width, height);
+      pdfDocument.save('dbaskitReceipt.pdf');
+    })
   }
 }

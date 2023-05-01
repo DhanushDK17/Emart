@@ -18,6 +18,8 @@ export class BillViewComponent implements OnInit {
   amount: number = 0;
   allBills: Bill[];
   allBillDetails: BillDetails[];
+  shipping: string = 'pickup';
+  promo: string = '';
   currentBuyer: any;
     constructor(protected emartService: EmartService,
     protected router: Router, protected activatedRoute: ActivatedRoute) { }
@@ -46,5 +48,17 @@ export class BillViewComponent implements OnInit {
         }
       );
     this.router.navigate(['item-list']);
+  }
+  recalcAmount() {
+    if (this.shipping == 'delivery') {
+      this.amount += 20
+    } else if (this.shipping == 'pickup') {
+      this.amount -= 20
+    }
+  }
+  applyPromo () {
+    if (this.promo == "CS5391") {
+      this.amount -= this.amount * 0.1
+    }
   }
 }
