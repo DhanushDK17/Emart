@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { EmartService } from '../../emart.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EmartService } from '../emart/emart.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/login.service';
+import { NgForm } from '@angular/forms';
+import { Buyer } from '../emart/buyer';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-landing-page',
+  templateUrl: './landing-page.component.html',
+  styleUrls: ['./landing-page.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LandingPageComponent implements OnInit {
+  @ViewChild('signUpForm') public buyerSignupForm: NgForm;
+  buyerusername: string = '';
+  buyerpassword: string = '';
+  buyeremail: string = '';
+  buyermobile: number;
+  buyerdate: Date;
+  buyers: any;
   sign: string = 'buyer';
   errorMessage: string;
   username: string;
@@ -18,14 +27,32 @@ export class LoginComponent implements OnInit {
   buyer: boolean;
   constructor(protected emartService: EmartService, protected router: Router, protected activatedRoute: ActivatedRoute,
     protected loginService: LoginService) {
-     }
+  }
   ngOnInit(): void {
     this.errorMessage = "";
   }
-  validate() {
-    console.log('validate');
-    if (this.sign == 'buyer') {
+  addBuyer() {
+    let buyer: Buyer = {
+      id: 0,
+      username: this.buyerusername,
+      password: this.buyerpassword,
+      email: this.buyeremail,
+      mobile: this.buyermobile,
+      date: this.buyerdate,
+      firstname: '',
+      lastname: '',
+      card: '',
+      shipping: ''
+    };
 
+    this.emartService.addBuyer(buyer).subscribe(
+      (response: any) => {
+      }
+    );
+    this.router.navigate(['/']);
+  }
+  validate() {
+    if (this.sign == 'buyer') {
       this.emartService
         .validateBuyer(this.username, this.password)
         .subscribe(
@@ -48,9 +75,3 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-
-
-
-
-
-

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+// import { LandingPageComponent } from './landing-page/landing-page.component';
 
 import { ItemListComponent } from './emart/item/item-list/item-list.component';
 import { ItemDisplayComponent } from './emart/item/item-display/item-display.component';
@@ -20,6 +21,10 @@ import { ErrorComponent } from './error/error.component';
 import { EnterGuardService } from './enter-guard-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatRadioModule} from '@angular/material/radio'; 
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatIconModule} from '@angular/material/icon'; 
+import {MatCardModule} from '@angular/material/card'; 
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
@@ -39,7 +44,7 @@ import {MatSliderModule} from '@angular/material/slider';
     SellerSignupComponent,
     HeaderComponent,
     LogoutComponent,
-    ErrorComponent
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,11 @@ import {MatSliderModule} from '@angular/material/slider';
     MatExpansionModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatSliderModule
+    MatSliderModule,
+    MatRadioModule,
+    MatTabsModule,
+    MatIconModule,
+    MatCardModule
   ],
   providers: [SignUpDeactivateService,EnterGuardService],
   bootstrap: [AppComponent]

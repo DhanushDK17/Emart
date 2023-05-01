@@ -29,19 +29,18 @@ export class ItemDisplayComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       this.id = params.get('iId');
-      this.emartService.getReviews(this.id).subscribe(
-        (response: any) => {
-          this.currentReviews = response;
-          console.log(response);
-        }
-      );
       this.emartService.getItem(this.id).subscribe(
         (response: any) => {
           this.item = response;
           console.log(response);
         }
       ); 
-     
+      this.emartService.getReviews(this.id).subscribe(
+        (response: any) => {
+          this.currentReviews = response;
+          console.log(response);
+        }
+      );
     });
   }
 
@@ -77,5 +76,8 @@ export class ItemDisplayComponent implements OnInit {
   }
   guest(){
     this.router.navigate(['login']);
+  }
+  handleBack() {
+    history.go(-1);
   }
 }

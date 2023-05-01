@@ -1,16 +1,17 @@
-<div class="container mx-5 my-5">
-  <div class="row content ">
-    <div class="col-md-5">
-      <img class="card-img-top " [src]="item?.image" alt="item.name" style="width:300px" enctype='multipart/form-data'>
+<div class="container mx-5 my-5" style="width: 100%">
+  <button style="margin-bottom: 10px;" mat-raised-button (click)="handleBack()"><-Back</button>
+  <div class="row content" style="display: flex;justify-content: center;">
+    <div class="col-md-5" style="margin-right: 10px;display: flex;align-items: center;justify-content: center;border-radius: 10px;">
+      <!-- <img class="card-img-top " [src]="item?.image" alt="item.name" style="width:300px" enctype='multipart/form-data'> -->
+      <mat-card>
+        <img class="card-img-top " [src]="item?.image" alt="item.name" style="width:300px" enctype='multipart/form-data'>
+      </mat-card>
     </div>
-    <div class="col-md-7 ">
-      <div class="container ">
-        <h3><small>Product Details</small></h3>
-        <hr>
-        <h2>{{item?.name}}</h2>
-        <h3>Price: Rs. {{item?.price}} /-</h3>
+    <div class="col-md-6" style="border: 1px solid black;border-radius: 10px;">
+      <div class="container" style="padding: 10px;">
+        <h3 style="color: green;">${{item?.price}}</h3>
         <h3>Available Quantity: {{item?.quantity}}</h3>
-        <B>Count</B> &nbsp;<input matInput type="text" style="width:40px;" [(ngModel)]="count">
+        <B>Count</B> &nbsp;<input matInput type="text" style="width:40px;padding: 10px;border: 1px solid black;" [(ngModel)]="count">
         &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary"  *ngIf="getLoggedIn()"   (click)="addToCart(item)">Add to
           Cart</button>&nbsp;
           &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary"  *ngIf="!getLoggedIn()" (click)="login()">Login to

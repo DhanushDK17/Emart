@@ -67,10 +67,35 @@
                     </td>
                     <td>Rs. {{ amount }}</td>
                 </tr>
+                <tr *ngIf="shipping=='delivery'">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <h5>Shipping fee</h5>
+                    </td>
+                    <td>Rs. 20</td>
+                </tr>
             </tbody>
         </table>
     </div>
-   
+    <td>
+        <div style="display: flex;flex-direction: column;align-items: start;">
+            <h3>
+                Shipping
+            </h3>
+            <mat-radio-group (change)="recalcAmount()" [(ngModel)]="shipping" [ngModelOptions]="{standalone: true}" aria-label="Select an option" class="row">
+                <mat-radio-button style="margin-right: 10px;" value="pickup">Pick up</mat-radio-button>
+                <mat-radio-button value="delivery">Deliver to address</mat-radio-button>
+            </mat-radio-group>  
+        </div>
+        <div style="display: flex;flex-direction: column;align-items: start;margin-top: 20px;">
+            <h3>
+                Promo code
+            </h3>
+            <input type="text" style="padding: 10px; border-bottom: 1px solid black" (change)="applyPromo()" [(ngModel)]="promo" [ngModelOptions]="{standalone: true}" placeholder="ASDAWBBBWWWW">
+        </div>
+    </td>
     <div class="row m-2">
         <div class="table-responsive m-5">
             <button type="button" class="btn btn-secondary ml-5 w-75" (click)="addBill()">

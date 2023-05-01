@@ -1,24 +1,26 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <h2 class="text-white">
-        <i class="material-icons"></i>eMart</h2>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" style="display: flex; align-items: center; height: 60px;">
+    <h2 class="text-white" style="font-size: 30px;" [ngStyle]="{cursor: 'pointer', margin: 0}">DBASKIT</h2>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapse-nav-bar">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapse-nav-bar">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" *ngIf="!getLoggedIn()">
+            <li class="nav-item" *ngIf="!getLoggedIn()" style="border-right: 1px solid black; padding-right: 10px;">
                 <a class="nav-link  text-white" routerLink="login">Login</a>
             </li>
-             <li class="nav-item" *ngIf="!getLoggedIn()">
+             <li class="nav-item" *ngIf="!getLoggedIn()" style="border-right: 1px solid black; padding-right: 10px;">
                 <a class="nav-link  text-white" routerLink="buyer-signup">Signup</a>
             </li> 
-            <li class="nav-item" >
+            <li class="nav-item" style="">
                 <a class="nav-link  text-white" routerLink="item-list">Item List</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" routerLink="cart-list">Cart</a>
+            <li class="nav-item" *ngIf="getLoggedIn()" style="border-right: 1px solid black; padding-left: 10px;padding-right: 10px;">
+                <div style="display: flex; align-items: center;">
+                    <span class="material-symbols-outlined" style="cursor:pointer">shopping_cart</span>
+                    <a class="nav-link text-white" routerLink="cart-list">Cart</a>
+                </div>
             </li>
-            <li class="nav-item" *ngIf="getLoggedIn()">
+            <li class="nav-item" *ngIf="getLoggedIn()" style="border-right: 1px solid black; padding-left: 10px;padding-right: 10px;">
                 <a class="nav-link text-white" routerLink="bill-list">Purchase History</a>
             </li>
             <li class="nav-item" *ngIf="getLoggedIn()">

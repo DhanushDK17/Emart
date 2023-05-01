@@ -1,5 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-
+.bg-dark {
+    background-color: orange !important;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: orange;
+}
+.mat-ripple {
+  width: 50%;
+}
+input {
+  border-radius: 30px;
+  border: 0;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 :host ::ng-deep mat-slider.mat-slider.mat-slider-horizontal .mat-slider-ticks {
