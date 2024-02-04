@@ -11,6 +11,7 @@ import { BuyerSignupComponent } from './emart/signup/buyer-signup/buyer-signup.c
 import { SignUpDeactivateService } from './sign-up-can-deactivate.service';
 import { ErrorComponent } from './error/error.component';
 import { EnterGuardService } from './enter-guard-service';
+import { ConfirmComponent } from './confirm/confirm.component';
 const routes: Routes = [{
                          path: '',
                          component:ItemListComponent
@@ -62,7 +63,11 @@ const routes: Routes = [{
                         {
                           path: 'error',
                             component:ErrorComponent
-                      }
+                      },
+                      {
+                        path: 'confirm',
+                          component:ConfirmComponent
+                    }
                         ];
 
 @NgModule({

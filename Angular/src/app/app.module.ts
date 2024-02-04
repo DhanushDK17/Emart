@@ -28,7 +28,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
-import {MatSliderModule} from '@angular/material/slider'; 
+import {MatSliderModule} from '@angular/material/slider';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmComponent } from './confirm/confirm.component'; 
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import {MatSliderModule} from '@angular/material/slider';
     HeaderComponent,
     LogoutComponent,
     ErrorComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatRadioModule,
     MatTabsModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    NgbModule
   ],
   providers: [SignUpDeactivateService,EnterGuardService],
   bootstrap: [AppComponent]

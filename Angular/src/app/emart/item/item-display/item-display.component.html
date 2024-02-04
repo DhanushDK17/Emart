@@ -15,9 +15,9 @@
         &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary"  *ngIf="getLoggedIn()"   (click)="addToCart(item)">Add to
           Cart</button>&nbsp;
           &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary"  *ngIf="!getLoggedIn()" (click)="login()">Login to
-            Checkout</button>
+            Add to cart</button>
           &nbsp;
-          &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary" *ngIf="!getLoggedIn()" (click)="addToCart(item)">Checkout as
+          &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary" *ngIf="!getLoggedIn()" (click)="addToCart(item)">Proceed as
             Guest</button>
       </div>
       <div class="container-fluid ">
@@ -26,12 +26,28 @@
         <br><br>
       </div>
 
-      <div *ngIf="getLoggedIn()">
+      
+      <h4 class="text-center" *ngIf="getLoggedIn()">Leave a Review and Rating :</h4>  
+      <form role="form" *ngIf="getLoggedIn()">
+        <div class="row form-group mx-5">
+         <div> <input type="text" class="form-control" rows="3" [value]="review" (input)="onValueChange($event)" /> 
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div><B>Rating</B> 
+          <!-- &nbsp;<input matInput type="number"  min="1" max="5"style="width:70px;padding: 10px;border: 1px solid black;" [(ngModel)]="rating">
+          &nbsp; &nbsp;<b>/ 5</b> -->
+          &nbsp; &nbsp;<ngb-rating [(rate)]="rating"></ngb-rating>
+        </div>
+        </div>
+        <div class="col text-center">
+          <button class="btn btn-success center-block" (click)="addReview()">Submit</button>
+        </div>
+      </form>
+      <div>
         <h2>Reviews</h2><mat-accordion>
           <mat-expansion-panel hideToggle *ngFor="let item of currentReviews">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <b> #User: </b> &nbsp;&nbsp; {{item.name}}
+                <b> #User: </b> &nbsp;&nbsp; {{item.name}} &nbsp;&nbsp;&nbsp;&nbsp;
+                <b> #Rating: </b> &nbsp;&nbsp; {{item.rating}}
               </mat-panel-title>
               <mat-panel-description>
                 {{item.review}}
@@ -40,15 +56,6 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-      <h4 class="text-center" *ngIf="getLoggedIn()">Leave a Review:</h4>
-      <form role="form" *ngIf="getLoggedIn()">
-        <div class="form-group mx-5">
-          <input type="text" class="form-control" rows="3" [value]="review" (input)="onValueChange($event)" />
-        </div>
-        <div class="col text-center">
-          <button class="btn btn-success center-block" (click)="addReview()">Submit</button>
-        </div>
-      </form>
       <br>
       <br>
     </div>

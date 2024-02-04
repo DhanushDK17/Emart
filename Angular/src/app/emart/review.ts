@@ -4,5 +4,6 @@ export interface Review{
     item: number;
     review: string;
     name: string;
+    rating: number;
 
 }

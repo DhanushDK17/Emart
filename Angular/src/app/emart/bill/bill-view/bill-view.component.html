@@ -4,7 +4,8 @@
             <div class="row mt-2">
                 <div class="col" style="display: flex; justify-content: space-between;align-items: center;">
                     <h1>Bill</h1>
-                    <span class="material-symbols-outlined" (click)="printReceipt()" style="cursor:pointer">print</span>
+                    <span class="material-symbols-outlined" (click)="printReceipt()" *ngIf="getLoggedIn()"
+                        style="cursor:pointer">print</span>
                 </div>
             </div>
             <div class="row">
@@ -27,7 +28,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="float-left">
-                         Date: {{ currentBuyer?.date | date:'fullDate'}} 
+                        Date: {{ currentBuyer?.date | date:'fullDate'}}
                     </div>
                 </div>
                 <!-- <div class="col-6">
@@ -84,33 +85,52 @@
             <h3>
                 Shipping
             </h3>
-            <mat-radio-group (change)="recalcAmount()" [(ngModel)]="shipping" [ngModelOptions]="{standalone: true}" aria-label="Select an option" class="row">
+            <mat-radio-group (change)="recalcAmount()" [(ngModel)]="shipping" [ngModelOptions]="{standalone: true}"
+                aria-label="Select an option" class="row">
                 <mat-radio-button style="margin-right: 10px;" value="pickup">Pick up</mat-radio-button>
                 <mat-radio-button value="delivery">Deliver to address</mat-radio-button>
-            </mat-radio-group>  
+            </mat-radio-group>
+            <div class="row" *ngIf="getLoggedIn()">
+                <div class="col-6">
+
+                        <b> Default Card: </b>{{ currentBuyer?.card }}
+
+                </div>
+                &nbsp;&nbsp;
+                <div class="col-6">
+    
+                       <b> Shipping Adress:</b> {{ currentBuyer?.shipping }}
+     
+                </div>
+            </div>
         </div>
+       
         <div style="display: flex;flex-direction: column;align-items: start;margin-top: 20px;">
             <h3>
                 Promo code
             </h3>
-            <input type="text" style="padding: 10px; border-bottom: 1px solid black" (change)="applyPromo()" [(ngModel)]="promo" [ngModelOptions]="{standalone: true}" placeholder="ASDAWBBBWWWW">
+            <input type="text" style="padding: 10px; border-bottom: 1px solid black" (change)="applyPromo()"
+                [(ngModel)]="promo" [ngModelOptions]="{standalone: true}" placeholder="ASDAWBBBWWWW">
         </div>
     </td>
     <div class="row m-2">
         <div class="table-responsive m-5">
-            <button type="button" class="btn btn-secondary ml-5 w-75" (click)="addBill()">
+            <button type="button" class="btn btn-secondary ml-5 w-75" *ngIf="getLoggedIn()" (click)="addBill()">
                 Pay Amount
+            </button>
+            <B *ngIf="!getLoggedIn()"> Card Details</B> &nbsp;<input matInput *ngIf="!getLoggedIn()" type="text"
+                style="width:150px;padding: 10px;border: 1px solid black;" [(ngModel)]="card">
+            &nbsp; <B *ngIf="!getLoggedIn()"> CVV</B> &nbsp;<input matInput *ngIf="!getLoggedIn()" type="text"
+            style="width:150px;padding: 10px;border: 1px solid black;" [(ngModel)]="cvv">
+        &nbsp;<B *ngIf="!getLoggedIn()">Address </B> &nbsp;<input matInput *ngIf="!getLoggedIn()" type="text"
+                style="width:200px;padding: 10px;border: 1px solid black;" [(ngModel)]="ship">
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <button type="button" class="btn btn-secondary ml-5 w-75" *ngIf="!getLoggedIn()"
+                [disabled]="!card.length || !ship.length || !cvv.length" (click)="addBill()">
+                Pay and download reciept
             </button>
         </div>
     </div>
-    <div class="col-6">
-        <div class="float-right">
-            Default Card: {{ currentBuyer?.card }} 
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="float-right">
-            Shipping Adress: {{ currentBuyer?.shipping }} 
-        </div>
-    </div>
+
 </div>

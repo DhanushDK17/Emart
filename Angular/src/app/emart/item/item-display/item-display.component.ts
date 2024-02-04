@@ -5,6 +5,7 @@ import { Item } from '../../item';
 import { SubCategory } from '../../sub-category';
 import { Category } from '../../category';
 import { Review } from '../../review';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-item-display',
@@ -19,8 +20,9 @@ export class ItemDisplayComponent implements OnInit {
   review: string ="";
   req: Review;
   id: any;
+  //rating:number;
   currentReviews: any;
-  rating: 0;
+  rating: number;
   constructor(protected activatedRoute: ActivatedRoute,
     protected emartService: EmartService,
     protected router: Router) {
@@ -38,7 +40,7 @@ export class ItemDisplayComponent implements OnInit {
       this.emartService.getReviews(this.id).subscribe(
         (response: any) => {
           this.currentReviews = response;
-          console.log(response);
+          console.log('43',response);
         }
       );
     });
@@ -57,7 +59,8 @@ export class ItemDisplayComponent implements OnInit {
       id: null,
       item: this.id,
       review: this.review,
-      name: a.username
+      name: a.username,
+      rating: this.rating
     }
   this.emartService.addreview(this.req); 
   }
@@ -80,4 +83,8 @@ export class ItemDisplayComponent implements OnInit {
   handleBack() {
     history.go(-1);
   }
+ 
+  
+    
+  
 }

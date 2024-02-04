@@ -97,9 +97,12 @@ export class EmartService {
         }
       );
     }
+    let bill: any; 
+    
     //i1:local storage for current buyer
     let a = JSON.parse(localStorage.getItem('i1'));
-    let bill: any = {
+    if(this.getLoggedIn()){
+    bill = {
       id: 0,
       type: 'credit',
       date: todayDate,
@@ -109,10 +112,26 @@ export class EmartService {
         id: a.id
       },
       allBillDetails: allBillDetails
+    }}
+    else{
+      bill = {
+        id: 0,
+        type: 'credit',
+        date: todayDate,
+        remarks: '',
+        amount: total,
+        buyer: {
+          id: 205
+        },
+        allBillDetails: allBillDetails
+      }
     }
     this.cartItems = [];
     allBillDetails = [];
     return this.http.post("http://localhost:8083/buyer-item-service/emart/bill", bill);
+  }
+  getLoggedIn(){
+    return sessionStorage.getItem('key');//retrieving session storage item for login nav bar stability
   }
   setBuyerAndBills(currentBuyer: any) {
     this.currentBuyer = currentBuyer;
@@ -130,7 +149,11 @@ export class EmartService {
     //const body=JSON.stringify(buyer);
     return this.http.post("http://localhost:8083/BuyerSignupService/buyer", buyer);
   }
-
+  getRating() {
+    //i1:local storage for current buyer
+   // let curUser = JSON.parse(localStorage.getItem('i1'));
+    return this.http.get("http://localhost:8083/buyer-item-service/emart/rating");
+  }
  
   //Accessing end point for buyer and retrieving its observable.
   getBuyer() {

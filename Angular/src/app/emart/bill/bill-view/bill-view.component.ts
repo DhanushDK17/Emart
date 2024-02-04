@@ -23,6 +23,9 @@ export class BillViewComponent implements OnInit {
   allBillDetails: BillDetails[];
   shipping: string = 'pickup';
   promo: string = '';
+  card: string ='';
+  ship: string ='';
+  cvv: string ='';
   currentBuyer: any;
     constructor(protected emartService: EmartService,
     protected router: Router, protected activatedRoute: ActivatedRoute) { }
@@ -36,6 +39,9 @@ export class BillViewComponent implements OnInit {
     }
   }
   addBill() {
+    if(!this.getLoggedIn()){
+      this.printReceipt();
+    }
     this.emartService.addBill(this.todayDate, this.amount)
 
       .subscribe(
@@ -51,7 +57,7 @@ export class BillViewComponent implements OnInit {
             )
         }
       );
-    this.router.navigate(['item-list']);
+    this.router.navigate(['confirm']);
   }
   recalcAmount() {
     if (this.shipping == 'delivery') {
@@ -75,5 +81,8 @@ export class BillViewComponent implements OnInit {
       pdfDocument.addImage(content, 'png', 0, 0, width, height);
       pdfDocument.save('dbaskitReceipt.pdf');
     })
+  }
+  getLoggedIn(){
+    return sessionStorage.getItem('key');//retrieving session storage item for login nav bar stability
   }
 }

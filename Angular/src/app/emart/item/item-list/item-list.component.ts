@@ -10,13 +10,15 @@ import { Router } from '@angular/router';
 })
 export class ItemListComponent implements OnInit {
   allItems: any;
-  filteredItems: any;
+  filteredItems: any[];
   categoriesWithSubcategories: {[key: string]: string[]} = {}; // initialize as empty object
   categories: any;
   search : String ="";
   maxPrice: any = 300;
+  minRating: any = 0;
   maxp: any = 0;
   filterName: any = '';
+  allReviews: any;
   constructor(
     protected emartService: EmartService,
     protected router: Router
@@ -27,6 +29,7 @@ export class ItemListComponent implements OnInit {
       (response: any) => {
         this.allItems = response;
         this.filteredItems=response;
+        console.log(this.filteredItems);
         this.categories=this.getCategoriesWithSubcategories(response);
         for (let index = 0; index < this.allItems.length; index++) {
           const element = this.allItems[index];
@@ -34,8 +37,22 @@ export class ItemListComponent implements OnInit {
             this.maxp = element.price;
           }
         }
+        this.emartService.getRating().subscribe(
+          (response2: any) => {
+            console.log(response2);
+            this.allReviews = this.getAverageRatings(response2);  
+           
+            console.log(this.assignStockFromRating(response,response2));
+
+            this.filteredItems=this.assignStockFromRating(response,response2)
+          }
+        );
       }
     );
+   
+    console.log(JSON.stringify(this.filteredItems));
+    
+    console.log(this.filteredItems);
   }
 
   displayItemDetails(itemID: number) {
@@ -71,8 +88,8 @@ filterSubcategories(subcategory:any){
   );
 }
 selectAll(){
-   this.filteredItems = this.allItems;
- }
+  this.filteredItems = this.allItems;
+}
 searchy(){
 
   this.filteredItems = this.allItems.filter( item => 
@@ -85,11 +102,64 @@ filterItems() {
   this.filteredItems = this.allItems.filter(item =>
     item.price <= this.maxPrice)
 }
+filterItems2() {
+  console.log(this.minRating)
+  this.filteredItems = this.allItems.filter(item =>
+    item.rating >= this.minRating)
+}
 filterUsingName() {
   this.filteredItems = this.allItems.filter(item => item.name.toLowerCase().includes(this.filterName.toLowerCase()))
 }
 formatLabel(value: number): string {
   return `${value}`;
 }
+getAverageRatings(reviews: any): any {
+  for (let index = 0; index < this.allItems.length; index++) {
+    const element = this.allItems[index];
+    let sumRating = 0
+    let ratingCount = 0
+    for (let index = 0; index < reviews.length; index++) {
+      const review = reviews[index];
+      if (review.item == element.id) {
+        sumRating += review.rating;
+        ratingCount += 1
+      }
+    }
+    if (ratingCount == 0) {
+      element.rating = 0
+    } else {
+      element.rating = Math.round(sumRating/ratingCount);
+    }
+  }
+  const itemRatings: any = {};
 
+  for (const review of reviews) {
+    const itemId = review.item;
+    const rating = review.rating;
+
+    if (itemId in itemRatings) {
+      itemRatings.id =rating;
+    } else {
+      itemRatings.id = rating;
+    }
+  }
+
+  const itemAverages: any= {};
+
+  for (const id in itemRatings) {
+    const ratings = itemRatings.id;
+    const sum = ratings.reduce((acc, rating) => acc + rating, 0);
+    const average = sum / ratings.length;
+    itemAverages.id = average;
+  }
+console.log(itemAverages);
+  return itemAverages;
+}
+assignStockFromRating(items: any, reviews: any) {
+  reviews.forEach(review => {
+    console.log(review.id)
+    //if(item.id == )
+  }); 
+  return items
+}
 }
